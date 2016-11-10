@@ -17,3 +17,5 @@
 | **NOP**     | Instruccion NOP, no hace nada por un pulso de reloj    | -                                   | NOP          |
 | **HALT**    | Halt al programa                                       | -                                   | HALT         |
 
+# License
+OMEGA LICENSE
