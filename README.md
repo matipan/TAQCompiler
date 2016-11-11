@@ -78,7 +78,7 @@ etiqueta: instruccion -- Recomendado
 etiqueta:instruccion -- No recomendado
 ```
 
-### Acerca de este proyecto
+# Acerca de este proyecto
 Este proyecto se llevo a cabo gracias a la motivacion del proyecto final de la materia Taller de Arquitectura, dictada por Horacio Villagarcia, de la Facultad de Informatica de la Universidad Nacional de La Plata.
 
 # License
