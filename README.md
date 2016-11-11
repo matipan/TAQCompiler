@@ -39,7 +39,9 @@ ADD N2                  0000001111111110 -- Celda 1
 STORE N3                0000000111111101 -- Celda 2
 HALT                    0000100000000000 -- Celda 3
 end
+```
 
+```
 # Ejemplo de uso de etiquetas, se realiza una multiplicacion entre N1 y N2, cuyo resultado se almacena en N3:
 var:
 N1: 3
