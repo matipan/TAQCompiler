@@ -24,8 +24,8 @@ El unico registro visible al programador del lenguaje TAQ es el acumulador. Se u
 
 ### Compilador
 El compilador interpreta el lenguaje TAQ para convertir las instrucciones en su representación simbólica de los códigos de máquina binarios y otras constantes necesarias para programar la arquitectura de procesador sencillo.
-La memoria utiliza por el compilador consta de 256 celdas de 16 bits, usadas para el almacenamineto de las instrucciones, direcciones y operandos.
-Las variables son apilados comenzando en la ultima direccion de la memoria, mientras que las instrucciones del programa siguen una secuencia incremental desde la celda cero. Como podemos observar en el siguiente ejemplo:
+La memoria utiliza por el compilador consta de 256 celdas de 16 bits, usadas para el almacenamineto de las instrucciones, direcciones y operandos(los cuales son de representacion binaria sin signo de 16 bits).
+Las variables son apiladas comenzando en la ultima direccion de la memoria, mientras que las instrucciones del programa siguen una secuencia incremental desde la celda cero. Como podemos observar en el siguiente ejemplo:
 ```
 # Un programa que suma dos numeros:
 var:
@@ -78,6 +78,8 @@ etiqueta: instruccion -- Recomendado
 etiqueta:instruccion -- No recomendado
 ```
 
+### Acerca de este proyecto
+Este proyecto se llevo a cabo gracias a la motivacion del proyecto final de la materia Taller de Arquitectura, dictada por Horacio Villagarcia, de la Facultad de Informatica de la Universidad Nacional de La Plata.
+
 # License
 OMEGA LICENSE
-
