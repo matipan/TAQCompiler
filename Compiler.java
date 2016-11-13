@@ -177,7 +177,7 @@ public class Compiler {
 			}
 		}
 
-		if(codigoFuente.indexOf("var:")>codigoFuente.indexOf("programa:")){
+		if(codigoFuente.indexOf("var:")>codigoFuente.indexOf("programa:") && codigoFuente.contains("programa:")){
 			erroresCompilacion.add("Se deben declarar las variables antes del programa principal");
 		}
 	}
