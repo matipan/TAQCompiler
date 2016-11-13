@@ -3,23 +3,45 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Compiler {
-
+	/*
+	 * Sintaxis:
+	 * 1 instruccion por linea
+	 * Debe haber espacios entre las palabras clave
+	 * Se acepta la ausencia de un espacio luego del ":" de etiquetas y variables
+	 * Si no se define el valor de una variable se la considera =0
+	 *  
+	 * 
+	 * 
+	 */
 	public static void main(String[] args) {
 		
+		//Lectura del nombre del archivo
 		Scanner inp = new Scanner(System.in);
-		System.out.print("Ingrese el nombre del archivo a compilar (sin extension): ");
+		System.out.print("Ingrese el nombre del archivo a compilar: ");
 		String fileName = inp.next();
+		
+		//Configuracion de lecutura y escritura de archivos 
 		Scanner scn = IOFileManager.IO(fileName, fileName + ".taq");
-		HashMap<String, String> codeOps = HashMapBuilder.build("LOAD", "00000010", "ADD", "00000011", "STORE", "00000001", "JUMP", "00000000",
-				"SUB", "00000110", "AND", "00000100", "JZ", "00000101", "NOP", "00000111", "HALT", "00001000");
 		if(scn == null) {
+			System.err.println("Error en la carga del archivo");
+			inp.close();
 			return;
 		}
+		
+		//Definicion tabla de codOps
+		//La misma contendrá tambien las referecias de etiquetas
+		HashMap<String, String> codeOps = HashMapBuilder.build("LOAD", "00000010", "ADD", "00000011", "STORE", "00000001", "JUMP", "00000000",
+				"SUB", "00000110", "AND", "00000100", "JZ", "00000101", "NOP", "00000111", "HALT", "00001000");
+		
+		//Inicializacion de la tabla de memoria de 256 celdas
 		String[] program = new String[256];
-		ArrayList<String> labels = new ArrayList<String>();
 		for (int i = 0; i < program.length; i++) {
 			program[i] = "0000000000000000";
 		}
+		
+		//En labels se almacenarán las variables
+		ArrayList<String> labels = new ArrayList<String>();
+		
 
 		// Variables loading
 		boolean stopError=false;
@@ -119,6 +141,8 @@ public class Compiler {
 		for (int i = 0; i < program.length; i++) {
 			System.out.println(program[i]);
 		}
+		
+		
 		inp.close();
 	}
 
