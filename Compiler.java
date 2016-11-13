@@ -39,8 +39,7 @@ public class Compiler {
 		String fileName = inp.next();
 
 		//Configuracion de lecutura y escritura de archivos
-		//TODO manejar bien las extensiones
-		Scanner scn = IOFileManager.IO(fileName, fileName + ".taq");
+		Scanner scn = IOFileManager.IO(fileName, fileName.split("\\.")[0] + ".taq"); 
 		if(scn == null) {
 			System.err.println("Error en la carga del archivo");
 			inp.close();
