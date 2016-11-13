@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Compiler {
 
 	public static void main(String[] args) {
+		
 		Scanner inp = new Scanner(System.in);
 		System.out.print("Ingrese el nombre del archivo a compilar (sin extension): ");
 		String fileName = inp.next();
