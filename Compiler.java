@@ -7,12 +7,8 @@ public class Compiler {
 	 * Sintaxis:
 	 * 1 instruccion por linea
 	 * Debe haber espacios entre las palabras clave
-	 * Se acepta la ausencia de un espacio luego del ":" de etiquetas y variables
-	 * 
-	 * Comentarios #<comentarios>
-	 *  
-	 * 
-	 * 
+	 * Luego del ":" de una etiqueta debe haber un espacio 
+	 * Comentarios #<comentarios> 
 	 */
 
 	//TODO chequear uniqueness
@@ -36,7 +32,6 @@ public class Compiler {
 	static ArrayList<String> erroresCompilacion =new ArrayList<String>();
 
 	
-
 	public static void main(String[] args) {		
 		//Lectura del nombre del archivo
 		Scanner inp = new Scanner(System.in);
@@ -113,8 +108,11 @@ public class Compiler {
 			String[] instruction=codigoFuente.get(i).split(" ");
 			if(instruction.length>2){
 				//Es una inst con label. Guarda la posicion de memoria a la que corresponde
-				//TODO chequear uniqueness
-				codeOps.put(instruction[0].replaceAll(":", ""), String.format("%8s", Integer.toString(i-inicio, 2)).replaceAll(" ", "0"));
+				if(!codeOps.containsKey(instruction[0].replaceAll(":", ""))){
+					codeOps.put(instruction[0].replaceAll(":", ""), String.format("%8s", Integer.toString(i-inicio, 2)).replaceAll(" ", "0"));
+				}else{
+					erroresCompilacion.add("Las etiquetas no se pueden repetir ni coincidir con el nombre de otras instrucciones");
+				}
 			}else if (instruction.length==1){
 				//HALT
 				programa[i-inicio] = codeOps.get(instruction[0]) + "00000000";
@@ -150,7 +148,6 @@ public class Compiler {
 	}
 	
 	private static void chequeoDeclaracionCuerpoVariablesPrograma(){
-
 		if(!codigoFuente.contains("var:")){
 			erroresCompilacion.add("Falta la declaracion 'var:'");
 		}else{
