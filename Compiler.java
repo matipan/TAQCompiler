@@ -104,7 +104,21 @@ public class Compiler {
 		//se saltea la linea "programa:"
 		
 		while(!codigoFuente.get(i).equalsIgnoreCase("end")){
-			String[] instruction=codigoFuente.get(i).split(" ");
+			String[] instruction=codigoFuente.get(i).replaceAll(":", " ").split(" +");
+			if(instruction[instruction.length-1].equals("HALT")){
+				//HALT
+				programa[i-inicio] = codeOps.get(instruction[instruction.length-1]) + "00000000";
+				i++;
+				if(instruction.length==2){
+					//tiene label
+					if(!codeOps.containsKey(instruction[0].replaceAll(":", ""))){
+						codeOps.put(instruction[0].replaceAll(":", ""), String.format("%8s", Integer.toString(i-inicio, 2)).replaceAll(" ", "0"));
+					}else{
+						erroresCompilacion.add("Las etiquetas no se pueden repetir ni coincidir con el nombre de otras instrucciones");
+					}
+				}
+				continue;
+			}
 			if(instruction.length>2){
 				//Es una inst con label. Guarda la posicion de memoria a la que corresponde
 				if(!codeOps.containsKey(instruction[0].replaceAll(":", ""))){
@@ -112,11 +126,6 @@ public class Compiler {
 				}else{
 					erroresCompilacion.add("Las etiquetas no se pueden repetir ni coincidir con el nombre de otras instrucciones");
 				}
-			}else if (instruction.length==1){
-				//HALT
-				programa[i-inicio] = codeOps.get(instruction[0]) + "00000000";
-				i++;
-				continue;
 			}
 			//Ya sea para instruccion con etiqueta o no
 			String codeOp = instruction[instruction.length-2];
