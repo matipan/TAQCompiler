@@ -70,9 +70,9 @@ end
 ```
 #Ejemplo de cálculo de fibonacci(input)
 var:
-    input:6
+    input:8
     act:1
-    result:1
+    result:0
     ant:0
     uno:1
 endvar
@@ -88,10 +88,12 @@ for:    LOAD ant
     STORE act
     LOAD input
     SUB uno
-    JZ termino
     STORE input
+    JZ termino
     JUMP for
-termino: HALT
+termino: LOAD ant
+	STORE result 
+	HALT
 end
 ```
 
