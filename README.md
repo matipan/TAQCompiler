@@ -67,6 +67,34 @@ ld: LOAD N3
 HALT
 end
 ```
+```
+#Ejemplo de cálculo de fibonacci(input)
+var:
+    input:6
+    act:1
+    result:1
+    ant:0
+    uno:1
+endvar
+programa:
+    LOAD input
+    JZ termino
+for:    LOAD ant
+    ADD act
+    STORE result
+    LOAD act
+    STORE ant
+    LOAD result
+    STORE act
+    LOAD input
+    SUB uno
+    JZ termino
+    STORE input
+    JUMP for
+termino: HALT
+end
+```
+
 #### Extras
 El codigo fuente del programa se considera texto plano, cuando se lo pasa por el compilador se genera un archivo `.taq` con las 256 lineas de 16 bits correspondientes a las celdas de la memoria.
 
