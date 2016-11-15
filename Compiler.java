@@ -112,7 +112,7 @@ public class Compiler {
 				if(instruction.length==2){
 					//tiene label
 					if(!codeOps.containsKey(instruction[0].replaceAll(":", ""))){
-						codeOps.put(instruction[0].replaceAll(":", ""), String.format("%8s", Integer.toString(i-inicio, 2)).replaceAll(" ", "0"));
+						codeOps.put(instruction[0].replaceAll(":", ""), String.format("%8s", Integer.toString(i-1-inicio, 2)).replaceAll(" ", "0"));
 					}else{
 						erroresCompilacion.add("Las etiquetas no se pueden repetir ni coincidir con el nombre de otras instrucciones");
 					}
